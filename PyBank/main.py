@@ -70,3 +70,12 @@ with open(resultsFile, 'w') as outFile:
     writer.writerow([f"Average Change: ${averChanges:.2f}"])
     writer.writerow([f"Greatest Increase in Profits: {greatestIncrease['monthDay']} (${int(greatestIncrease['increaseAmount'])})"])
     writer.writerow([f"Greatest Decrease in Profits: {greatestDecrease['monthDay']} (${int(greatestDecrease['decreaseAmount'])})"])
+
+# Screen Printout of Results
+print("Financial Analysis")
+print("----------------------------")
+print(f"Total Months: {totalMonths}")
+print(f"Total: ${int(totalProfLoss)}")
+print(f"Average Change: ${averChanges:.2f}")
+print(f"Greatest Increase in Profits: {greatestIncrease['monthDay']} (${int(greatestIncrease['increaseAmount'])})")
+print(f"Greatest Decrease in Profits: {greatestDecrease['monthDay']} (${int(greatestDecrease['decreaseAmount'])})")
