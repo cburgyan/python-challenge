@@ -58,24 +58,24 @@ averChanges = sum(changesInProfLoss) / len(changesInProfLoss)
 # Create path for results.txt file
 resultsFile = os.path.join(".", "analysis", "results.txt")
 
-# Export Financial Analysis results to results.txt file
+# Export Financial Analysis results to results.txt file and print the results to screen
 with open(resultsFile, 'w') as outFile:
     writer = csv.writer(outFile)
 
+    # Print to screen and results.txt the results
     writer.writerow(["Financial Analysis"])
+    print("Financial Analysis")
     writer.writerow(["----------------------------"])
+    print("----------------------------")
 
     writer.writerow([f"Total Months: {totalMonths}"])
+    print(f"Total Months: {totalMonths}")
     writer.writerow([f"Total: ${int(totalProfLoss)}"])
+    print(f"Total: ${int(totalProfLoss)}")
     writer.writerow([f"Average Change: ${averChanges:.2f}"])
+    print(f"Average Change: ${averChanges:.2f}")
     writer.writerow([f"Greatest Increase in Profits: {greatestIncrease['monthDay']} (${int(greatestIncrease['increaseAmount'])})"])
+    print(f"Greatest Increase in Profits: {greatestIncrease['monthDay']} (${int(greatestIncrease['increaseAmount'])})")
     writer.writerow([f"Greatest Decrease in Profits: {greatestDecrease['monthDay']} (${int(greatestDecrease['decreaseAmount'])})"])
+    print(f"Greatest Decrease in Profits: {greatestDecrease['monthDay']} (${int(greatestDecrease['decreaseAmount'])})")
 
-# Screen Printout of Results
-print("Financial Analysis")
-print("----------------------------")
-print(f"Total Months: {totalMonths}")
-print(f"Total: ${int(totalProfLoss)}")
-print(f"Average Change: ${averChanges:.2f}")
-print(f"Greatest Increase in Profits: {greatestIncrease['monthDay']} (${int(greatestIncrease['increaseAmount'])})")
-print(f"Greatest Decrease in Profits: {greatestDecrease['monthDay']} (${int(greatestDecrease['decreaseAmount'])})")

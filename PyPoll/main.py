@@ -15,6 +15,7 @@ with open(csv_filepath, 'r') as rFile:
     # Skip header row
     headerRow = next(electionReader)
 
+    # Tabulate candidate's votes
     for row in electionReader:
         totalNumVotes += 1
 
@@ -23,30 +24,28 @@ with open(csv_filepath, 'r') as rFile:
         else:
             candidatesDict[row[2]] += 1
 
+# Initialize variables
 winnerName = ""
 winnerVotes = 0
 
 # Create path for results.txt file
 resultsFile = os.path.join(".", "analysis", "results.txt")
 
-# Export Financial Analysis results to results.txt file
+# Export Election results to results.txt file and print results to screen
 with open(resultsFile, 'w') as outFile:
     writer = csv.writer(outFile)
 
-    # Print Screen and results.txt file the division line and heading
-    print('Election Results\n-------------------------') 
+    # Print to Screen and results.txt file the results
+    print('Election Results')
     writer.writerow(['Election Results'])
+    print('-------------------------') 
     writer.writerow(['-------------------------'])
-    
-    # Print Screen and results.txt file the Total Votes
     print(f'Total Votes: {totalNumVotes}')  
     writer.writerow([f'Total Votes: {totalNumVotes}']) 
-    
-    # Print Screen and results.txt file the division line
     print('-------------------------')    
     writer.writerow(['-------------------------'])
 
-    isFirstCandidate = True 
+    # Print each candidate, his/her percentage, his/her total, and determine if he/she is the winner
     for candidate,votes in candidatesDict.items():
 
         # Test if current candidate is the winner
@@ -58,14 +57,10 @@ with open(resultsFile, 'w') as outFile:
         print(f'{candidate}: {votes / totalNumVotes * 100:.3f}% ({votes})')
         writer.writerow([f'{candidate}: {votes / totalNumVotes * 100:.3f}% ({votes})'])
 
-    # Print Screen and results.txt file the division line
+    # Print Screen and results.txt file the results
     print('-------------------------')
     writer.writerow(['-------------------------'])
-    
-    # Print Screen and results.txt file the winner's name
     print(f'Winner: {winnerName}')
     writer.writerow([f'Winner: {winnerName}'])
-    
-    # Print Screen and results.txt file the division line
     print('-------------------------')
     writer.writerow(['-------------------------'])
