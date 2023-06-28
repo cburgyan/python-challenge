@@ -4,7 +4,8 @@ import os
 # Create Path to Data
 csv_filepath = os.path.join(".", "Resources", "election_data.csv")
 
-# Initialize variables
+# Initialize variables of total number of votes and a dictionary for the 
+# candidates (keys) and their respective votes (values) they got
 totalNumVotes = 0
 candidatesDict = {}
 
@@ -19,12 +20,14 @@ with open(csv_filepath, 'r') as rFile:
     for row in electionReader:
         totalNumVotes += 1
 
+        # Check if row[2] is a new candidate and if so, add the candidate to the 
+        # candidate dictionary along with a vote count of 1
         if row[2] not in candidatesDict:
             candidatesDict[row[2]] = 1
         else:
             candidatesDict[row[2]] += 1
 
-# Initialize variables
+# Initialize winner variables
 winnerName = ""
 winnerVotes = 0
 
@@ -36,13 +39,13 @@ with open(resultsFile, 'w') as outFile:
     writer = csv.writer(outFile)
 
     # Print to Screen and results.txt file the results
-    print('Election Results')
+    print('\nElection Results\n')
     writer.writerow(['Election Results'])
-    print('-------------------------') 
+    print('-------------------------\n') 
     writer.writerow(['-------------------------'])
-    print(f'Total Votes: {totalNumVotes}')  
+    print(f'Total Votes: {totalNumVotes}\n')  
     writer.writerow([f'Total Votes: {totalNumVotes}']) 
-    print('-------------------------')    
+    print('-------------------------\n')    
     writer.writerow(['-------------------------'])
 
     # Print each candidate, his/her percentage, his/her total, and determine if he/she is the winner
@@ -54,13 +57,13 @@ with open(resultsFile, 'w') as outFile:
             winnerVotes = votes
         
         # Print Screen and results.txt file the candidate and his/her percentage of votes and number of votes
-        print(f'{candidate}: {votes / totalNumVotes * 100:.3f}% ({votes})')
+        print(f'{candidate}: {votes / totalNumVotes * 100:.3f}% ({votes})\n')
         writer.writerow([f'{candidate}: {votes / totalNumVotes * 100:.3f}% ({votes})'])
 
-    # Print Screen and results.txt file the results
-    print('-------------------------')
+    # Print Screen and results.txt file the winner results
+    print('-------------------------\n')
     writer.writerow(['-------------------------'])
-    print(f'Winner: {winnerName}')
+    print(f'Winner: {winnerName}\n')
     writer.writerow([f'Winner: {winnerName}'])
-    print('-------------------------')
+    print('-------------------------\n')
     writer.writerow(['-------------------------'])

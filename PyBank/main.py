@@ -45,10 +45,11 @@ with open(csv_filepath, 'r') as rFile:
 
             # Check if a new Greatest Increase or new Greatest Decrease has been ben found
             if changesInProfLoss[-1] > greatestIncrease["increaseAmount"]:
+                # Record the new greatest increase amount and date
                 greatestIncrease['monthDay'] = row[0]
                 greatestIncrease["increaseAmount"] = changesInProfLoss[-1]
             elif changesInProfLoss[-1] < greatestDecrease["decreaseAmount"]:
-                # Check if a new Greatest Increase or new Greatest Decrease has been ben found
+                # Record the new greatest decrease amount and date
                 greatestDecrease['monthDay'] = row[0]
                 greatestDecrease["decreaseAmount"] = changesInProfLoss[-1]
 
@@ -64,18 +65,23 @@ with open(resultsFile, 'w') as outFile:
 
     # Print to screen and results.txt the results
     writer.writerow(["Financial Analysis"])
-    print("Financial Analysis")
+    print("\nFinancial Analysis\n")
+
     writer.writerow(["----------------------------"])
-    print("----------------------------")
+    print("----------------------------\n")
 
     writer.writerow([f"Total Months: {totalMonths}"])
-    print(f"Total Months: {totalMonths}")
+    print(f"Total Months: {totalMonths}\n")
+
     writer.writerow([f"Total: ${int(totalProfLoss)}"])
-    print(f"Total: ${int(totalProfLoss)}")
+    print(f"Total: ${int(totalProfLoss)}\n")
+
     writer.writerow([f"Average Change: ${averChanges:.2f}"])
-    print(f"Average Change: ${averChanges:.2f}")
+    print(f"Average Change: ${averChanges:.2f}\n")
+
     writer.writerow([f"Greatest Increase in Profits: {greatestIncrease['monthDay']} (${int(greatestIncrease['increaseAmount'])})"])
-    print(f"Greatest Increase in Profits: {greatestIncrease['monthDay']} (${int(greatestIncrease['increaseAmount'])})")
+    print(f"Greatest Increase in Profits: {greatestIncrease['monthDay']} (${int(greatestIncrease['increaseAmount'])})\n")
+    
     writer.writerow([f"Greatest Decrease in Profits: {greatestDecrease['monthDay']} (${int(greatestDecrease['decreaseAmount'])})"])
-    print(f"Greatest Decrease in Profits: {greatestDecrease['monthDay']} (${int(greatestDecrease['decreaseAmount'])})")
+    print(f"Greatest Decrease in Profits: {greatestDecrease['monthDay']} (${int(greatestDecrease['decreaseAmount'])})\n")
 
